@@ -6,9 +6,10 @@ import (
 )
 
 func Hello() {
-	fmt.Println("hello go!")
-	subject.Test()
-	mytest()
+	// fmt.Println("hello go!")
+	// subject.Test()
+	// mytest()
+	subject.NextMinNum(12345)
 }
 
 func mytest() {

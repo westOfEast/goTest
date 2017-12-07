@@ -34,6 +34,8 @@ func NextMinNum(num int) int {
 		return num
 	}
 
+	sliceLeft := 
+
 	// sliceRight := numSplit[pos+1 : n]
 
 	return 12345

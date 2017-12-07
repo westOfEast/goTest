@@ -34,11 +34,36 @@ func NextMinNum(num int) int {
 		return num
 	}
 
-	sliceLeft := 
+	sliceLeft := numArray[:position+1]
 
-	// sliceRight := numSplit[pos+1 : n]
+	sliceRight := numSplit[position+1 : n]
+	fmt.Println("sliceLeft", sliceLeft)
+	fmt.Println("sliceRight", sliceRight)
 
+	if len(sliceRight) == 1 {
+		sliceLeft = append(sliceLeft, sliceRight...)
+	} else {
+		//右边的部分升序排列
+		sliceRight = orderTheSlice(sliceRight)
+		sliceLeft = append(sliceLeft, sliceRight...)
+	}
+
+	fmt.Println(sliceLeft)
+
+    var result String = 
 	return 12345
+}
+
+func orderTheSlice(sliceRight []byte) []byte {
+	rightLen := len(sliceRight)
+	for outLoop := 0; outLoop < rightLen; outLoop++ {
+		for inLoop := outLoop; inLoop < rightLen; inLoop++ {
+			if sliceRight[outLoop] > sliceRight[inLoop] {
+				sliceRight[outLoop], sliceRight[inLoop] = sliceRight[inLoop], sliceRight[outLoop]
+			}
+		}
+	}
+	return sliceRight
 }
 
 func changeThePosition(numArray []byte) ([]byte, int) {

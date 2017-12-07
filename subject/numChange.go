@@ -22,25 +22,36 @@ func NextMinNum(num int) int {
 		fmt.Println(numSplit[i])
 	}
 
+	numArray := numSplit[:n]
 	//倒序循环数组找出需要改变的位n和位h，交换两者的值，然后将数组分为3部分,1:n的左边所有的位（顺序不变），2:第n位，3:第n位右边的所有位
 	//然后将第三部分升序排列，在将数字重新拼接
-	i := n - 1
-	for i; i >= 0; i-- {
-		for j := n - 1; j > i; j-- {
-			if numSplit[j] > numSplit[i] {
-				tmp := numSplit[i]
-				numSplit[i] = numSplit[j]
-				numSplit[j] = tmp
-				break
+	fmt.Println(numArray)
+	// var pos int = len(numArray) - 1
+	numArray, position := changeThePosition(numArray)
+	fmt.Println(position)
+
+	if position == 0 {
+		return num
+	}
+
+	// sliceRight := numSplit[pos+1 : n]
+
+	return 12345
+}
+
+func changeThePosition(numArray []byte) ([]byte, int) {
+	n := len(numArray)
+	for pos := len(numArray) - 1; pos >= 0; pos-- {
+		for j := n - 1; j > pos; j-- {
+			if numArray[j] > numArray[pos] {
+				// tmp := numSplit[pos]
+				// numSplit[pos] = numSplit[j]
+				// numSplit[j] = tmp
+				numArray[pos], numArray[j] = numArray[j], numArray[pos]
+				return numArray, pos
 			}
 		}
 	}
 
-	if i == 0 {
-		return num
-	}
-
-	sliceRight := numSplit[i+1 : n]
-
-	return 12345
+	return numArray, 0
 }

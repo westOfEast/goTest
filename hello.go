@@ -9,7 +9,8 @@ func Hello() {
 	// fmt.Println("hello go!")
 	// subject.Test()
 	// mytest()
-	subject.NextMinNum(642531)
+	result := subject.NextMinNum(642531)
+	fmt.Println("result is ", result)
 }
 
 func mytest() {

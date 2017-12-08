@@ -15,20 +15,18 @@ func NextMinNum(num int) int {
 		return num
 	}
 
-	var numSplit [10]byte
+	var numSplit [100]byte
 	for i := 0; i < n; i++ {
 		numSplit[i] = numStr[i] - 48
-		// numSplit[i], _ = strconv.Atoi(numStr[i])
-		fmt.Println(numSplit[i])
+		// fmt.Println(numSplit[i])
 	}
 
 	numArray := numSplit[:n]
 	//倒序循环数组找出需要改变的位n和位h，交换两者的值，然后将数组分为3部分,1:n的左边所有的位（顺序不变），2:第n位，3:第n位右边的所有位
 	//然后将第三部分升序排列，在将数字重新拼接
-	fmt.Println(numArray)
-	// var pos int = len(numArray) - 1
+	// fmt.Println(numArray)
 	numArray, position := changeThePosition(numArray)
-	fmt.Println(position)
+	// fmt.Println(position)
 
 	if position == 0 {
 		return num
@@ -37,8 +35,8 @@ func NextMinNum(num int) int {
 	sliceLeft := numArray[:position+1]
 
 	sliceRight := numSplit[position+1 : n]
-	fmt.Println("sliceLeft", sliceLeft)
-	fmt.Println("sliceRight", sliceRight)
+	// fmt.Println("sliceLeft", sliceLeft)
+	// fmt.Println("sliceRight", sliceRight)
 
 	if len(sliceRight) == 1 {
 		sliceLeft = append(sliceLeft, sliceRight...)
@@ -49,9 +47,15 @@ func NextMinNum(num int) int {
 	}
 
 	fmt.Println(sliceLeft)
+	for iter, value := range sliceLeft {
+		sliceLeft[iter] = value + 48
+	}
 
-    var result String = 
-	return 12345
+	resultStr := string(sliceLeft)
+	// fmt.Println(resultStr)
+	result, _ := strconv.Atoi(resultStr)
+	// fmt.Println(result)
+	return result
 }
 
 func orderTheSlice(sliceRight []byte) []byte {
@@ -71,9 +75,6 @@ func changeThePosition(numArray []byte) ([]byte, int) {
 	for pos := len(numArray) - 1; pos >= 0; pos-- {
 		for j := n - 1; j > pos; j-- {
 			if numArray[j] > numArray[pos] {
-				// tmp := numSplit[pos]
-				// numSplit[pos] = numSplit[j]
-				// numSplit[j] = tmp
 				numArray[pos], numArray[j] = numArray[j], numArray[pos]
 				return numArray, pos
 			}

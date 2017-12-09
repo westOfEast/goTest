@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	. "test/mysql"
 )
 
 func main() {
@@ -10,6 +11,7 @@ func main() {
 	// Test()
 	// test()
 	Hello()
+	ConnectTest()
 }
 
 func test() {

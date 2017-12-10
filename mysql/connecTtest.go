@@ -7,10 +7,15 @@ import (
 )
 
 func ConnectTest() {
-	db, err := sql.Open("mysql", "root:mysqlsybercare@tcp(192.168.1.204:3306)/cj.sybercare.com_2020?charset=utf8")
+	db, err := sql.Open("mysql", "root:@tcp(127.0.0.1:3307)/hospital_kaifa?charset=utf8")
 	checkErr(err)
 
-	rows, err := db.Query("SELECT * FROM studio_person")
+	// select * from information_schema.columns
+	// where table_schema = 'db'  #表所在数据库
+	// and table_name = 'tablename' ; #你要查的表
+	// rows, err := db.Query("SELECT * FROM data_blood_glucose where id < 10")
+	// rows, err := db.Query("desc data_blood_glucose")
+	rows, err := db.Query("select * from information_schema.columns where table_schema = 'hospital_kaifa' and table_name = 'data_blood_glucose' ")
 	checkErr(err)
 
 	//字典类型
@@ -29,6 +34,10 @@ func ConnectTest() {
 		for i, col := range values {
 			if col != nil {
 				record[columns[i]] = string(col.([]byte))
+				for _, value := range record[columns[i]] {
+					fmt.Printf("%c", value)
+				}
+				fmt.Println("/n")
 			}
 		}
 		fmt.Println(record)

@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 	_ "github.com/go-sql-driver/mysql"
+	. "test/common"
 )
 
 func ConnectTest() {
@@ -34,13 +35,14 @@ func ConnectTest() {
 		for i, col := range values {
 			if col != nil {
 				record[columns[i]] = string(col.([]byte))
-				for _, value := range record[columns[i]] {
-					fmt.Printf("%c", value)
-				}
-				fmt.Println("/n")
+				// for _, value := range record[columns[i]] {
+				// 	fmt.Printf("%c", value)
+				// }
+				// fmt.Println("/n")
+				String(col.([]byte)).Println()
 			}
 		}
-		fmt.Println(record)
+		// fmt.Println(record)
 	}
 }
 

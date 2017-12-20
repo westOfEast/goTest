@@ -17,6 +17,6 @@ func (str String) Println() {
 		return r
 	}
 	for _, value := range str {
-		fmt.Println(rot13(value))
+		fmt.Print(rot13(value))
 	}
 }

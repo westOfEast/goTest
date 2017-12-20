@@ -10,7 +10,9 @@ func main() {
 	// fmt.Println("hello mytest")
 	// Test()
 	// test()
-	Hello()
+	var strTest = string("汉字，测试")
+	fmt.Println(strTest)
+	// Hello()
 	ConnectTest()
 }
 

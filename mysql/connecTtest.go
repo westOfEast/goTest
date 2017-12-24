@@ -43,9 +43,7 @@ func ConnectTest() {
 			}
 		}
 		// fmt.Println(record)
-		for key, value := range record {
-			WriteFile(string(key + " = " + value))
-		}
+		WriteFile(record)
 	}
 }
 

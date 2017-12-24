@@ -28,7 +28,7 @@ func ConnectTest() {
 		scanArgs[i] = &values[i]
 	}
 
-	queryResult := make([]map[string]string, len(columns))
+	queryResult := make([]map[string]string, 0)
 	for rows.Next() {
 		//将行数据保存到record字典
 		err = rows.Scan(scanArgs...)
@@ -56,13 +56,13 @@ func ConnectTest() {
 }
 
 func checkRecord(record map[string]string) bool {
-	_, ok := record["COLUMN_NAME"]
-	if !ok {
+	columnName, ok := record["COLUMN_NAME"]
+	if !ok || columnName == "" {
 		return false
 	}
 
-	_, er := record["TABLE_NAME"]
-	if !er {
+	tableName, er := record["TABLE_NAME"]
+	if !er || tableName == "" {
 		return false
 	}
 

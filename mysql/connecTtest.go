@@ -43,8 +43,8 @@ func ConnectTest() {
 			}
 		}
 		// fmt.Println(record)
-		WriteFile(record)
 	}
+	WriteFile(record)
 }
 
 func checkErr(err error) {

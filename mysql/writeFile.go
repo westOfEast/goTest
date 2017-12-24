@@ -35,6 +35,7 @@ func WriteFile(queryResult [](map[string]string)) {
 		}
 
 		_, err := f.WriteString("\r\n")
+		check(err)
 	}
 
 	// fmt.Printf("写入 %d 个字节n", n2)

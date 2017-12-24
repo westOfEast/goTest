@@ -42,7 +42,10 @@ func ConnectTest() {
 				// String(col.([]byte)).Println()
 			}
 		}
-		fmt.Println(record)
+		// fmt.Println(record)
+		for key, value := range record {
+			WriteFile(string(key + " = " + value))
+		}
 	}
 }
 

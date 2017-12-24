@@ -20,3 +20,7 @@ func (str String) Println() {
 		fmt.Print(rot13(value))
 	}
 }
+
+// func (str String) String(tmp string) {
+//     string
+// }

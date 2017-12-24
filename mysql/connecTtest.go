@@ -44,10 +44,29 @@ func ConnectTest() {
 			}
 		}
 		// fmt.Println(record)
-		queryResult = append(queryResult, record)
-
+		if checkRecord(record) {
+			queryResult = append(queryResult, record)
+		}
 	}
-	WriteFile(queryResult)
+
+	e := WriteFile(queryResult)
+	if e != nil {
+		fmt.Println(e.Error())
+	}
+}
+
+func checkRecord(record map[string]string) bool {
+	_, ok := record["COLUMN_NAME"]
+	if !ok {
+		return false
+	}
+
+	_, er := record["TABLE_NAME"]
+	if !er {
+		return false
+	}
+
+	return true
 }
 
 func checkErr(err error) {

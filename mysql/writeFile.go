@@ -1,7 +1,7 @@
 package mysql
 
 import (
-	// "fmt"
+	"fmt"
 	"os"
 	. "test/common"
 )
@@ -13,12 +13,19 @@ func check(e error) {
 }
 
 func WriteFile(queryResult [](map[string]string)) error {
-	if queryResult == nil || len(queryResult) <= 0 || queryResult[0]["TABLE_NAME"] == "" {
+	if queryResult == nil || len(queryResult) <= 0 {
+		fmt.Println(queryResult[0]["TABLE_NAME"])
 		return &Error{"Data Error", nil}
 	}
 
+	fmt.Println(queryResult)
+	tableName, ok := queryResult[0]["TABLE_NAME"]
+	if !ok {
+		return &Error{"TABLE_NAME is nil", nil}
+	}
+
 	// tableName, ok := queryResult[""]
-	f, err3 := os.Create("./" + queryResult[0]["TABLE_NAME"] + ".java") //创建文件
+	f, err3 := os.Create("./" + tableName + ".java") //创建文件
 	check(err3)
 	defer f.Close()
 
@@ -29,8 +36,8 @@ func WriteFile(queryResult [](map[string]string)) error {
 	// @Table(name = "studio_users")
 	writeLn("", f)
 	writeLn("@Entity", f)
-	writeLn(`@Table(name = "`+queryResult[0]["TABLE_NAME"]+`")`, f)
-	f.WriteString("public class " + queryResult[0]["TABLE_NAME"] + " extends BaseInteger {\r\n")
+	writeLn(`@Table(name = "`+tableName+`")`, f)
+	f.WriteString("public class " + tableName + " extends BaseInteger {\r\n")
 	for i := 0; i < len(queryResult); i++ {
 
 		// _, err3 := f.WriteString("    private String " + queryResult[i]["COLUMN_NAME"] + ";") //写入文件(字节数组)

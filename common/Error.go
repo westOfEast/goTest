@@ -6,5 +6,5 @@ type Error struct {
 }
 
 func (e *Error) Error() string {
-	return e.Msg + e.Err.Error()
+	return e.Msg
 }

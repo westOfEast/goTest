@@ -29,7 +29,7 @@ func WriteFile(queryResult map[string]string) {
 	check(err3)
 	defer f.Close()
 	for key, value := range queryResult {
-		_, err3 := f.WriteString(key + " = " + value) //写入文件(字节数组)
+		_, err3 := f.WriteString(key + " = " + value + "\r\n") //写入文件(字节数组)
 		check(err3)
 	}
 

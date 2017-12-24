@@ -30,9 +30,11 @@ func WriteFile(queryResult [](map[string]string)) {
 	defer f.Close()
 	for i := 0; i < len(queryResult); i++ {
 		for key, value := range queryResult[i] {
-			_, err3 := f.WriteString(key + " = " + value + "\r\n") //写入文件(字节数组)
+			_, err3 := f.WriteString(key + " = " + value) //写入文件(字节数组)
 			check(err3)
 		}
+
+		_, err := f.WriteString("\r\n")
 	}
 
 	// fmt.Printf("写入 %d 个字节n", n2)

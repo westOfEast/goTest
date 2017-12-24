@@ -43,7 +43,7 @@ func WriteFile(queryResult [](map[string]string)) error {
 		// _, err3 := f.WriteString("    private String " + queryResult[i]["COLUMN_NAME"] + ";") //写入文件(字节数组)
 		writeLn("", f)
 		//  @Column(name = "studio_id", columnDefinition = ("varchar(255)  default null comment '工作室表Id'"))
-		writeLn(`@Column(name = "`+queryResult[i]["COLUMN_NAME"]+`", columnDefinition = ("varchar(255)  default null comment '`+queryResult[i]["COLUMN_COMMENT"]+"'", f)
+		writeLn(`    @Column(name = "`+queryResult[i]["COLUMN_NAME"]+`", columnDefinition = ("varchar(255)  default null comment '`+queryResult[i]["COLUMN_COMMENT"]+`'"))`, f)
 		writeLn("    private String "+queryResult[i]["COLUMN_NAME"]+";", f)
 		// for key, value := range queryResult[i] {
 		// 	// _, err3 := f.WriteString("    " + key + " = " + value) //写入文件(字节数组)

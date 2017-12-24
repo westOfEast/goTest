@@ -23,14 +23,16 @@ func check(e error) {
 // 	f.Sync()
 // }
 
-func WriteFile(queryResult map[string]string) {
+func WriteFile(queryResult [](map[string]string)) {
 	// tableName, ok := queryResult[""]
 	f, err3 := os.Create("./output3.txt") //创建文件
 	check(err3)
 	defer f.Close()
-	for key, value := range queryResult {
-		_, err3 := f.WriteString(key + " = " + value + "\r\n") //写入文件(字节数组)
-		check(err3)
+	for i := 0; i < len(queryResult); i++ {
+		for key, value := range queryResult[i] {
+			_, err3 := f.WriteString(key + " = " + value + "\r\n") //写入文件(字节数组)
+			check(err3)
+		}
 	}
 
 	// fmt.Printf("写入 %d 个字节n", n2)

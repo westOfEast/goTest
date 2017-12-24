@@ -28,6 +28,7 @@ func ConnectTest() {
 		scanArgs[i] = &values[i]
 	}
 
+	queryResult := make([]map[string]string, len(columns))
 	for rows.Next() {
 		//将行数据保存到record字典
 		err = rows.Scan(scanArgs...)
@@ -43,8 +44,10 @@ func ConnectTest() {
 			}
 		}
 		// fmt.Println(record)
+		queryResult = append(queryResult, record)
+
 	}
-	WriteFile(record)
+	WriteFile(queryResult)
 }
 
 func checkErr(err error) {

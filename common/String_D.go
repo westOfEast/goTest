@@ -21,6 +21,7 @@ func (str String) Println() {
 	}
 }
 
+//不知道该怎么写了......
 // func (str String) String(tmp string) {
-//     string
+// 	string
 // }

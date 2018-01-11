@@ -16,7 +16,7 @@ func ConnectTest() {
 	// and table_name = 'tablename' ; #你要查的表
 	// rows, err := db.Query("SELECT * FROM data_blood_glucose where id < 10")
 	// rows, err := db.Query("desc data_blood_glucose")
-	rows, err := db.Query("select COLUMN_NAME,COLUMN_COMMENT,COLUMN_TYPE,TABLE_NAME from information_schema.columns where table_schema = 'hospital_kaifa' and table_name = 'data_blood_glucose' ")
+	rows, err := db.Query("select COLUMN_NAME,COLUMN_COMMENT,COLUMN_TYPE,TABLE_NAME,DATA_TYPE from information_schema.columns where table_schema = 'hospital_kaifa' and table_name = 'data_blood_glucose' ")
 	checkErr(err)
 
 	//字典类型

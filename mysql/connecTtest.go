@@ -11,6 +11,7 @@ func ConnectTest() {
 	db, err := sql.Open("mysql", "root:@tcp(127.0.0.1:3307)/hospital_kaifa?charset=utf8")
 	checkErr(err)
 
+	//git测试
 	// select * from information_schema.columns
 	// where table_schema = 'db'  #表所在数据库
 	// and table_name = 'tablename' ; #你要查的表
